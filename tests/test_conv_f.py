@@ -4,6 +4,7 @@ import arrayfire_wrapper.dtypes as dtype
 import arrayfire_wrapper.lib as wrapper
 import arrayfire_wrapper.lib.signal_processing.convolutions as convolutions
 from arrayfire_wrapper.lib._constants import ConvDomain, ConvMode
+from arrayfire_wrapper.lib.create_and_modify_array.helper_functions import array_to_string
 
 
 # Parameterization for input shapes
@@ -449,7 +450,6 @@ def test_fftConvolve2_valid_dtype(invdtypes: dtype.Dtype) -> None:
     """Test fft_convolve1 with valid dtypes."""
     signal = wrapper.randu((10, 10), invdtypes)
     filter = wrapper.randu((3, 3), invdtypes)
-    print(filter)
     result = convolutions.fft_convolve2(signal, filter, ConvMode(0))
 
     expected_output = (wrapper.get_dims(signal)[0], wrapper.get_dims(signal)[1])
